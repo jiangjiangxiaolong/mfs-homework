@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <input type="text" id ="username" >
+    <input type="text" id ="password1" >
+    <input type="text" id ="password2" >
+    <input type="button" id ="register" value="注册">
+    <script>
+      $('#register').on('click',function(){
+        var username =  $('#username').val();
+        var password1 =  $('#password1').val();
+        var password2 =  $('#password2').val();
+        $.ajax({
+          method:'post',
+          url:'http://www.b.com:3000/reg',
+          data:{"username":username,"password1":password1,"password2":password2},
+          success:function(data){
+            alert('{errno:'+data['errno']+',errmsg:'+data['errmsg']+',data:'+data['data']+'}');
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
